@@ -17,26 +17,22 @@
         <div class="header__line"></div>
       </header>
       <main class="content">
-        <div class="profile">
+        <section class="profile">
           <div class="profile__avatar">
             <img src="./images/profile-picture.png" alt="фотография профиля" class="profile__image">
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <p class="profile__text">Исследователь океана</p>
-              <a href class="profile__edit-button link">
-                <div class="profile__edit-button-rectangle">
-                  <img src="./images/edit-button-pen.svg" alt="" class="profile__edit-button-pen">
-                </div>
-              </a>
+              <button class="profile__edit-button">
+                <img src="./images/edit-button-pen.svg" alt="" class="profile__edit-button-pen">
+              </button>
             </div>
           </div>
-          <a href="#" class="profile__add-button link">
-            <div class="profile__add-button-rectangle">
-              <img src="./images/plus.svg" alt="плюс" class="profile__add-button-plus">
-            </div>
-          </a>
-        </div>
-        <div class="elements">
+          <button class="profile__add-button">
+            <img src="./images/plus.svg" alt="плюс" class="profile__add-button-plus">
+          </button>
+        </section>
+        <section class="elements">
           <div class="element">
             <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
             <div class="element__description">
@@ -79,13 +75,14 @@
               <img src="./images/like.svg" alt="лайк" class="element__like">
             </div>
           </div>
-        </div>
+        </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
   </div>
+  <script src="./scripts/index.js"></script>>
 </body>
 
 </html>
