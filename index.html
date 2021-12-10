@@ -5,38 +5,86 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Место</title>
-  <link href="normalize.css" rel="stylesheet">
+  <link href="./vendor/normalize.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 
 <body class="body">
   <div class="page">
-    <header class="header">
-      <img src="./images/logo.svg" alt="лого" class="logo">
-      <div class="header__line"></div>
-    </header>
-    <main class="content">
-      <div class="profile">
-        <div class="profile__avatar">
-          <img src="./images/profile-picture.png" alt="фотография профиля" class="profile__image">
-          <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__text">Исследователь океана</p>
-            <div class="profile__edit-button">
-              <div class="profile__edit-button-rectangle">
-                <img src="./images/edit-button-pen.svg" alt="" class="profile__edit-button-pen">
-              </div>
+    <div class="container">
+      <header class="header">
+        <img src="./images/logo.svg" alt="лого" class="logo">
+        <div class="header__line"></div>
+      </header>
+      <main class="content">
+        <div class="profile">
+          <div class="profile__avatar">
+            <img src="./images/profile-picture.png" alt="фотография профиля" class="profile__image">
+            <div class="profile__info">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <p class="profile__text">Исследователь океана</p>
+              <a href class="profile__edit-button link">
+                <div class="profile__edit-button-rectangle">
+                  <img src="./images/edit-button-pen.svg" alt="" class="profile__edit-button-pen">
+                </div>
+              </a>
+            </div>
+          </div>
+          <a href="#" class="profile__add-button link">
+            <div class="profile__add-button-rectangle">
+              <img src="./images/plus.svg" alt="плюс" class="profile__add-button-plus">
+            </div>
+          </a>
+        </div>
+        <div class="elements">
+          <div class="element">
+            <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
+            <div class="element__description">
+              <h2 class="element__text">Карачаевск</h2>
+              <img src="./images/like.svg" alt="лайк" class="element__like">
+            </div>
+          </div>
+          <div class="element">
+            <img src="./images/yaroslavl.jpg" alt="Ярославская область" class="element__image">
+            <div class="element__description">
+              <h2 class="element__text">Ярославская область</h2>
+              <img src="./images/like.svg" alt="лайк" class="element__like">
+            </div>
+          </div>
+          <div class="element">
+            <img src="./images/altai.jpg" alt="Алтай" class="element__image">
+            <div class="element__description">
+              <h2 class="element__text">Алтай</h2>
+              <img src="./images/like.svg" alt="лайк" class="element__like">
+            </div>
+          </div>
+          <div class="element">
+            <img src="./images/kola.jpg" alt="Кольский Полуостров" class="element__image">
+            <div class="element__description">
+              <h2 class="element__text">Кольский Полуостров</h2>
+              <img src="./images/like.svg" alt="лайк" class="element__like">
+            </div>
+          </div>
+          <div class="element">
+            <img src="./images/murmansk.jpg" alt="Мурманск" class="element__image">
+            <div class="element__description">
+              <h2 class="element__text">Мурманская область</h2>
+              <img src="./images/like.svg" alt="лайк" class="element__like">
+            </div>
+          </div>
+          <div class="element">
+            <img src="./images/tver.jpg" alt="Тверь" class="element__image">
+            <div class="element__description">
+              <h2 class="element__text">Тверская область</h2>
+              <img src="./images/like.svg" alt="лайк" class="element__like">
             </div>
           </div>
         </div>
-        <div class="profile__add-button">
-          <div class="profile__add-button-rectangle">
-            <img src="./images/plus.svg" alt="плюс" class="profile__add-button-plus">
-          </div>
-        </div>
-      </div>
-    </main>
-    <footer class="footer"></footer>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+      </footer>
+    </div>
   </div>
 </body>
 
