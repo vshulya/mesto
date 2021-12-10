@@ -1,3 +1,10 @@
+@import url(./vendor/font.css);
+
+.body {
+  margin: 0;
+  background-color: black; 
+}
+
 .page {
 max-width: 1280px;
 min-width: 320px;
@@ -6,4 +13,19 @@ color: white;
 font-family: Inter, sans-serif;
 font-weight: 400;
 text-rendering: optimizeLegibility;
+}
+
+.header {
+  padding-top: 45px;
+}
+
+.header__line {
+  opacity: 0.7;
+  border: 1px solid #545454;
+}
+
+.logo {
+  width: 142px;
+  height: 33px;
+  padding-bottom: 41px;
 }
