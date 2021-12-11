@@ -3,3 +3,9 @@
   display: grid;
   gap: 30px;
 }
+
+@media screen and (max-width: 540px) {
+  .pop-up__input {
+    padding-top: 75px;
+  } 
+}
