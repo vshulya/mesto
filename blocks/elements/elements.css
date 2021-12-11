@@ -1,0 +1,6 @@
+.elements {
+  padding-top: 47.25px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(282px, 1fr));
+  gap: 17px 20px;
+}

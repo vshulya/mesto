@@ -1,0 +1,7 @@
+.profile__avatar {
+  display: flex;
+  gap: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
