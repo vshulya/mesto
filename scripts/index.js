@@ -3,8 +3,8 @@ let popUpOpener = document.querySelector('.profile__edit-button');
 let popUpCloser = document.querySelector('.pop-up__close');
 
 popUpOpener.addEventListener('click', openPopUp);
-let nameInput = document.querySelector('.pop-up__input_info_name');
-let jobInput = document.querySelector('.pop-up__input_info_job');
+let nameInput = document.querySelector('.pop-up__text_info_name');
+let jobInput = document.querySelector('.pop-up__text_info_job');
 
 let profileName = document.querySelector('.profile__name');
 let profileText = document.querySelector('.profile__text');
