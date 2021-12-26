@@ -130,6 +130,7 @@ function createCard(cardData) {
   photoModalOpener.addEventListener('click', () => {
     photoModal.classList.add('pop-up_opened')
     fullSizePhoto.src = cardData.link;
+    fullSizePhoto.alt = cardData.name;
     fullSizePhotoTitle.textContent = cardData.name;
   });
 
@@ -138,6 +139,7 @@ function createCard(cardData) {
   });
 
   cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
   cardTitle.textContent = cardData.name;
 
   deleteButton.addEventListener('click', deleteHandler);
