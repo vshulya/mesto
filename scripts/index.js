@@ -27,33 +27,33 @@ const initialCards = [
 ];
 
 //modal
-let editModal = document.querySelector('.pop-up_place_title');
-let addCardModal = document.querySelector('.pop-up_place_card');
-let photoModal = document.querySelector('.pop-up_place_fullsize-photo');
+const editModal = document.querySelector('.pop-up_place_title');
+const addCardModal = document.querySelector('.pop-up_place_card');
+const photoModal = document.querySelector('.pop-up_place_fullsize-photo');
 
 
 //button
-let editModalOpener = document.querySelector('.profile__edit-button');
-let editModalCloser = editModal.querySelector('.pop-up__close');
-let addCardModalOpener = document.querySelector('.profile__add-button');
-let addCardModalCloser = addCardModal.querySelector('.pop-up__close');
+const editModalOpener = document.querySelector('.profile__edit-button');
+const editModalCloser = editModal.querySelector('.pop-up__close');
+const addCardModalOpener = document.querySelector('.profile__add-button');
+const addCardModalCloser = addCardModal.querySelector('.pop-up__close');
 
 //input
-let nameInput = document.querySelector('.pop-up__text_info_name');
-let jobInput = document.querySelector('.pop-up__text_info_job');
-let placeInput = document.querySelector('.pop-up__text_info_place');
-let linkInput = document.querySelector('.pop-up__text_info_link');
+const nameInput = document.querySelector('.pop-up__text_info_name');
+const jobInput = document.querySelector('.pop-up__text_info_job');
+const placeInput = document.querySelector('.pop-up__text_info_place');
+const linkInput = document.querySelector('.pop-up__text_info_link');
 
 
 //modal-prof
-let profileName = document.querySelector('.profile__name');
-let profileText = document.querySelector('.profile__text');
+const profileName = document.querySelector('.profile__name');
+const profiletext = document.querySelector('.profile__text');
 
 editModalOpener.addEventListener('click', () => {
   editModal.classList.add('pop-up_opened');
 
   nameInput.value = profileName.textContent;
-  jobInput.value = profileText.textContent;
+  jobInput.value = profiletext.textContent;
 });
 
 function closeEditModal() {
@@ -62,13 +62,13 @@ function closeEditModal() {
 
 editModalCloser.addEventListener('click', closeEditModal);
 
-let formElementEdit = editModal.querySelector('.pop-up__input');
+const formElementEdit = editModal.querySelector('.pop-up__input');
 
 formElementEdit.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
-  profileText.textContent = jobInput.value;
+  profiletext.textContent = jobInput.value;
 
   closeEditModal();
 });
@@ -86,7 +86,7 @@ function closeAddCardModal() {
 
 addCardModalCloser.addEventListener('click', closeAddCardModal);
 
-let formElementAddCard = addCardModal.querySelector('.pop-up__input');
+const formElementAddCard = addCardModal.querySelector('.pop-up__input');
 
 formElementAddCard.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -104,11 +104,11 @@ formElementAddCard.addEventListener('submit', (evt) => {
 
 //card-template
 
-let cardList = document.querySelector('.cards-list');
+const cardList = document.querySelector('.cards-list');
 const cardTemplate = document.querySelector('.card-template').content;
 
-let fullSizePhoto = document.querySelector('.pop-up__fullsize-photo');
-let fullSizePhotoTitle = document.querySelector('.pop-up__figcaption');
+const fullSizePhoto = document.querySelector('.pop-up__fullsize-photo');
+const fullSizePhotoTitle = document.querySelector('.pop-up__figcaption');
 
 function deleteHandler(evt) {
   evt.target.parentElement.remove();
@@ -119,13 +119,13 @@ function toggleLike(evt) {
 }
 
 function createCard(cardData) {
-  let cardElement = cardTemplate.cloneNode(true);
-  let cardImage = cardElement.querySelector('.card__image');
-  let cardTitle = cardElement.querySelector('.card__text');
-  let deleteButton = cardElement.querySelector('.card__delete-button');
-  let likeButton = cardElement.querySelector('.card__like');
-  let photoModalOpener = cardImage;
-  let photoModalCloser = photoModal.querySelector('.pop-up__close');
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImage = cardElement.querySelector('.card__image');
+  const cardTitle = cardElement.querySelector('.card__text');
+  const deleteButton = cardElement.querySelector('.card__delete-button');
+  const likeButton = cardElement.querySelector('.card__like');
+  const photoModalOpener = cardImage;
+  const photoModalCloser = photoModal.querySelector('.pop-up__close');
 
   photoModalOpener.addEventListener('click', () => {
     photoModal.classList.add('pop-up_opened')
