@@ -28,51 +28,10 @@
           <button type="button" class="profile__add-button button">
           </button>
         </section>
-        <section class="elements">
-          <div class="element">
-            <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
-            <div class="element__description">
-              <h2 class="element__text">Карачаевск</h2>
-              <button type="button" class="element__like button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img src="./images/yaroslavl.jpg" alt="Ярославская область" class="element__image">
-            <div class="element__description">
-              <h2 class="element__text">Ярославская область</h2>
-              <button class="element__like button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img src="./images/altai.jpg" alt="Алтай" class="element__image">
-            <div class="element__description">
-              <h2 class="element__text">Алтай</h2>
-              <button class="element__like button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img src="./images/kola.jpg" alt="Кольский Полуостров" class="element__image">
-            <div class="element__description">
-              <h2 class="element__text">Кольский Полуостров</h2>
-              <button class="element__like button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img src="./images/murmansk.jpg" alt="Мурманск" class="element__image">
-            <div class="element__description">
-              <h2 class="element__text">Мурманская область</h2>
-              <button class="element__like button"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img src="./images/tver.jpg" alt="Тверь" class="element__image">
-            <div class="element__description">
-              <h2 class="element__text">Тверская область</h2>
-              <button class="element__like button"></button>
-            </div>
-          </div>
+        <section class="cards">
+          <ul class="cards-list"></ul>
         </section>
-        <section class="pop-up">
+        <section class="pop-up pop-up_place_title">
           <div class="pop-up__container">
             <button type="button" class="pop-up__close button"></button>
             <h2 class="pop-up__title">Редактировать профиль</h2>
@@ -84,12 +43,41 @@
             </form>
           </div>
         </section>
+        <section class="pop-up pop-up_place_card">
+          <div class="pop-up__container">
+            <button type="button" class="pop-up__close button"></button>
+            <h2 class="pop-up__title">Новое место</h2>
+            <form action="submit" name="pop-up" class="pop-up__input">
+              <input type="text" value="" placeholder="Название" class="pop-up__text pop-up__text_info_place">
+              <input type="text" value="" placeholder="Ссылка на картинку" class="pop-up__text pop-up__text_info_link">
+              <button type="submit" class="pop-up__save button">Сохранить</button>
+            </form>
+          </div>
+        </section>
+        <section class="pop-up pop-up_place_fullsize-photo">
+          <!-- pop-up_opened -->
+          <figure class="pop-up__photo-container">
+            <button type="button" class="pop-up__close button"></button>
+            <img class="pop-up__fullsize-photo" src="" alt="">
+            <figcaption class="pop-up__figcaption"></figcaption>
+          </figure>
+        </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
   </div>
+  <template class="card-template">
+    <li class="card">
+      <button type="button" class="card__delete-button button"></button>
+      <img src="" alt="" class="card__image">
+      <div class="card__description">
+        <h2 class="card__text"></h2>
+        <button type="button" class="card__like button"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>>
 </body>
 
