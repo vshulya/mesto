@@ -23,7 +23,7 @@ function toggleModal(modal) {
 };
 
 
-//modal-prof
+//editModal
 const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
 
@@ -47,27 +47,12 @@ formElementEdit.addEventListener('submit', (evt) => {
 });
 
 
-//modal-add-card
+//photoModal
 
 openCardModalButton.addEventListener('click', () => toggleModal(cardModal));
 closeCardModalButton.addEventListener('click', () => toggleModal(cardModal));
 
 const formElementAddCard = cardModal.querySelector('.pop-up__input');
-
-formElementAddCard.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-
-  createCard({
-    name: placeInput.value,
-    link: linkInput.value
-  });
-
-  toggleModal(cardModal);
-  formElementAddCard.reset();
-
-});
-
-//card-modal
 
 closePhotoModalButton.addEventListener('click', () => toggleModal(photoModal));
 
@@ -87,8 +72,8 @@ function toggleLike(evt) {
   evt.target.classList.toggle('card__like_active');
 };
 
-function renderCard() {
-  cardList.prepend();
+function handlePreviewPicture() {
+  toggleModal(photoModal);
 };
 
 function createCard(cardData) {
@@ -99,25 +84,43 @@ function createCard(cardData) {
   const likeButton = element.querySelector('.card__like');
   const openPhotoModalButton = cardImage;
 
-
-  function handlePreviewPicture() {
-    photoModal.classList.add('pop-up_opened');
-    fullSizePhoto.src = cardData.link;
-    fullSizePhoto.alt = cardData.name;
-    fullSizePhotoTitle.textContent = cardData.name;
-  };
-
-  openPhotoModalButton.addEventListener('click', handlePreviewPicture);
-
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
   cardTitle.textContent = cardData.name;
 
+
+  openPhotoModalButton.addEventListener('click', function () {
+    handlePreviewPicture();
+    fullSizePhoto.src = cardData.link;
+    fullSizePhoto.alt = cardData.name;
+    fullSizePhotoTitle.textContent = cardData.name;
+  });
+
   deleteButton.addEventListener('click', deleteHandler);
   likeButton.addEventListener('click', toggleLike);
 
-  cardList.prepend(element);
-
+  return element;
 };
 
-initialCards.forEach(createCard);
+function renderCard(cardData) {
+  const newCard = createCard(cardData);
+  cardList.prepend(newCard);
+};
+
+initialCards.forEach(cardData => {
+  renderCard(cardData)
+});
+
+formElementAddCard.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  renderCard({
+    name: placeInput.value,
+    link: linkInput.value
+  });
+
+  toggleModal(cardModal);
+  formElementAddCard.reset();
+
+});
+
