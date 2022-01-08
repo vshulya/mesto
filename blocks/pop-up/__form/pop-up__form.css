@@ -1,0 +1,15 @@
+.pop-up__form {
+  width: 358px;
+  margin: auto;
+  padding-top: 49px;
+  display: grid;
+  gap: 15px;
+  
+}
+
+@media screen and (max-width: 540px) {
+  .pop-up__form {
+    width: 238px;
+    padding-top: 75px;
+  } 
+}

@@ -12,10 +12,10 @@ const closeCardModalButton = cardModal.querySelector('.pop-up__close');
 const closePhotoModalButton = photoModal.querySelector('.pop-up__close');
 
 //input
-const nameInput = document.querySelector('.pop-up__text_info_name');
-const jobInput = document.querySelector('.pop-up__text_info_job');
-const placeInput = document.querySelector('.pop-up__text_info_place');
-const linkInput = document.querySelector('.pop-up__text_info_link');
+const nameInput = document.querySelector('.pop-up__input_type_name');
+const jobInput = document.querySelector('.pop-up__input_type_job');
+const placeInput = document.querySelector('.pop-up__input_type_place');
+const linkInput = document.querySelector('.pop-up__input_type_link');
 
 //function toggleModal
 function toggleModal(modal) {
@@ -35,7 +35,7 @@ openEditModalButton.addEventListener('click', function () {
 });
 closeEditModalButton.addEventListener('click', () => toggleModal(editModal));
 
-const formElementEdit = editModal.querySelector('.pop-up__input');
+const formElementEdit = editModal.querySelector('.pop-up__form');
 
 formElementEdit.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -52,7 +52,7 @@ formElementEdit.addEventListener('submit', (evt) => {
 openCardModalButton.addEventListener('click', () => toggleModal(cardModal));
 closeCardModalButton.addEventListener('click', () => toggleModal(cardModal));
 
-const formElementAddCard = cardModal.querySelector('.pop-up__input');
+const formElementAddCard = cardModal.querySelector('.pop-up__form');
 
 closePhotoModalButton.addEventListener('click', () => toggleModal(photoModal));
 

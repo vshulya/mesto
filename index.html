@@ -35,11 +35,16 @@
           <div class="pop-up__container">
             <button type="button" class="pop-up__close button"></button>
             <h2 class="pop-up__title">Редактировать профиль</h2>
-            <form action="submit" name="pop-up" class="pop-up__input">
-              <input type="text" value="Жак-Ив Кусто" placeholder="Имя" class="pop-up__text pop-up__text_info_name">
+
+            <!--FORM1-->
+            <form action="submit" name="pop-up" class="pop-up__form">
+              <input type="text" value="Жак-Ив Кусто" placeholder="Имя" class="pop-up__input pop-up__input_type_name"
+                minlength="2" maxlength="40" required>
+              <span class="pop-up__input pop-up__input_type_error"></span>
               <input type="text" value="Исследователь океана" placeholder="Описание"
-                class="pop-up__text pop-up__text_info_job">
-              <button type="submit" class="pop-up__save button">Сохранить</button>
+                class="pop-up__input pop-up__input_type_job" minlength="2" maxlength="200" required>
+              <span class="pop-up__input pop-up__input_type_error"></span>
+              <button type="submit" class="pop-up__button button">Сохранить</button>
             </form>
           </div>
         </section>
@@ -47,10 +52,16 @@
           <div class="pop-up__container">
             <button type="button" class="pop-up__close button"></button>
             <h2 class="pop-up__title">Новое место</h2>
-            <form action="submit" name="pop-up" class="pop-up__input">
-              <input type="text" value="" placeholder="Название" class="pop-up__text pop-up__text_info_place">
-              <input type="text" value="" placeholder="Ссылка на картинку" class="pop-up__text pop-up__text_info_link">
-              <button type="submit" class="pop-up__save button">Сохранить</button>
+
+            <!--FORM2-->
+            <form action="submit" name="pop-up" class="pop-up__form">
+              <input type="text" value="" placeholder="Название" class="pop-up__input pop-up__input_type_place"
+                minlength="2" maxlength="30" required>
+              <span class="pop-up__input pop-up__input_type_error"></span>
+              <input type="url" value="" placeholder="Ссылка на картинку" class="pop-up__input pop-up__input_type_link"
+                required>
+              <span class="pop-up__input pop-up__input_type_error"></span>
+              <button type="submit" class="pop-up__button button">Сохранить</button>
             </form>
           </div>
         </section>
