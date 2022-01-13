@@ -41,10 +41,12 @@ const toggleButtonState = (inputs, button, inactiveButtonClass) => {
   }
 };
 
-const setInputListeners = (form, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
+const setListeners = (form, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
   const inputs = form.querySelectorAll(inputSelector);
   const submitButton = form.querySelector(submitButtonSelector);
   toggleButtonState(inputs, submitButton, inactiveButtonClass);
+
+  // addInputResetOnClose(form, inputs, rest)
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       checkInputValidity(form, input, rest);
@@ -53,13 +55,28 @@ const setInputListeners = (form, { inputSelector, submitButtonSelector, inactive
   });
 };
 
+// const addInputResetOnClose = (form, inputs, { inputErrorClass, errorClass }) => {
+//   const closeModalButtons = document.querySelectorAll('.pop-up__close');
+//   console.log(closeModalButtons);
+//   closeModalButtons.forEach(closeButton => {
+//   closeButton.addEventListener('click', () => {
+//       inputs.forEach(input => {
+//         console.log(input.textContent);
+//         input.value = "";
+//         hideInputError(form, input, errorClass, inputErrorClass);
+//       });
+//       toggleButtonState(inputs, button)
+//     });
+//   })
+// };
+
 const enableValidation = ({ formSelector, ...rest }) => {
   const forms = document.querySelectorAll(formSelector);
   forms.forEach((form) => {
     form.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
-    setInputListeners(form, rest);
+    setListeners(form, rest);
   });
 };
 
