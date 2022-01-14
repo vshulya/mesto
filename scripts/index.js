@@ -28,12 +28,27 @@ const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
 
 
+const addInputReset = (modal) => {
+  const inputs = modal.querySelectorAll('.pop-up__input');
+  inputs.forEach(input => {
+    const error = modal.querySelector(`#${input.id}-error`);
+    error.classList.remove('pop-up__input-error_visible');
+    error.textContent = '';
+    input.classList.remove('pop-up__input_type_error');
+  });
+};
+
 openEditModalButton.addEventListener('click', function () {
   toggleModal(editModal);
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
 });
-closeEditModalButton.addEventListener('click', () => toggleModal(editModal));
+
+closeEditModalButton.addEventListener('click', () => {
+  toggleModal(editModal);
+  addInputReset(editModal);
+});
+
 
 const formElementEdit = editModal.querySelector('.pop-up__form');
 
@@ -48,13 +63,47 @@ formElementEdit.addEventListener('submit', (evt) => {
 
 
 //photoModal
+openCardModalButton.addEventListener('click', () => {
+  toggleModal(cardModal);
+  placeInput.value = '';
+  linkInput.value = '';
+});
 
-openCardModalButton.addEventListener('click', () => toggleModal(cardModal));
-closeCardModalButton.addEventListener('click', () => toggleModal(cardModal));
+closeCardModalButton.addEventListener('click', () => {
+  toggleModal(cardModal);
+  addInputReset(cardModal);
+});
 
 const formElementAddCard = cardModal.querySelector('.pop-up__form');
 
 closePhotoModalButton.addEventListener('click', () => toggleModal(photoModal));
+
+//close modal on overlay
+
+const wireCloseModalOverlay = () => {
+  const modals = document.querySelectorAll('.pop-up');
+  modals.forEach((modal) => {
+    modal.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('pop-up_opened')) {
+        toggleModal(modal);
+      }
+    });
+  });
+};
+
+//close modal on esc
+
+const wireCloseModalEsc = () => {
+  const modals = document.querySelectorAll('.pop-up');
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      modals.forEach((modal) => {
+        modal.classList.remove('pop-up_opened');
+      });
+    };
+  });
+};
+
 
 //card-template
 
@@ -106,6 +155,9 @@ function renderCard(cardData) {
   const newCard = createCard(cardData);
   cardList.prepend(newCard);
 };
+
+wireCloseModalOverlay();
+wireCloseModalEsc();
 
 initialCards.forEach(cardData => {
   renderCard(cardData)
