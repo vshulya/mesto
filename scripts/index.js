@@ -20,7 +20,9 @@ const linkInput = document.querySelector('.pop-up__input_type_link');
 //function toggleModal
 function toggleModal(modal) {
   modal.classList.toggle('pop-up_opened');
-};
+  wireCloseModalEsc(modal, modal.classList.contains('pop-up_opened'));
+
+}
 
 
 //editModal
@@ -86,6 +88,7 @@ const wireCloseModalOverlay = () => {
     modal.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('pop-up_opened')) {
         toggleModal(modal);
+        addInputReset(modal);
       }
     });
   });
@@ -93,15 +96,17 @@ const wireCloseModalOverlay = () => {
 
 //close modal on esc
 
-const wireCloseModalEsc = () => {
-  const modals = document.querySelectorAll('.pop-up');
-  document.addEventListener('keydown', (evt) => {
+const wireCloseModalEsc = (modal, on) => {
+  function removeModalOnEscape(evt) {
     if (evt.key === 'Escape') {
-      modals.forEach((modal) => {
-        modal.classList.remove('pop-up_opened');
-      });
+      modal.classList.remove('pop-up_opened');
+      addInputReset(modal);
     };
-  });
+  }
+  if (on)
+    document.addEventListener('keydown', removeModalOnEscape);
+  else
+    document.removeEventListener('keydown', removeModalOnEscape);
 };
 
 
@@ -157,7 +162,6 @@ function renderCard(cardData) {
 };
 
 wireCloseModalOverlay();
-wireCloseModalEsc();
 
 initialCards.forEach(cardData => {
   renderCard(cardData)
