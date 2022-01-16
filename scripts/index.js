@@ -17,12 +17,17 @@ const jobInput = document.querySelector('.pop-up__input_type_job');
 const placeInput = document.querySelector('.pop-up__input_type_place');
 const linkInput = document.querySelector('.pop-up__input_type_link');
 
-//function toggleModal
-function toggleModal(modal) {
-  modal.classList.toggle('pop-up_opened');
-  wireCloseModalEsc(modal, modal.classList.contains('pop-up_opened'));
+//function openModal
+function openModal(modal) {
+  modal.classList.add('pop-up_opened');
+  document.addEventListener('keydown', closeByEscape);
+};
 
-}
+//function closeModal
+function closeModal(modal) {
+  modal.classList.remove('pop-up_opened');
+  document.removeEventListener('keydown', closeByEscape);
+};
 
 
 //editModal
@@ -41,14 +46,14 @@ const addInputReset = (modal) => {
 };
 
 openEditModalButton.addEventListener('click', function () {
-  toggleModal(editModal);
+  openModal(editModal);
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
+  addInputReset(editModal);
 });
 
 closeEditModalButton.addEventListener('click', () => {
-  toggleModal(editModal);
-  addInputReset(editModal);
+  closeModal(editModal);
 });
 
 
@@ -60,25 +65,29 @@ formElementEdit.addEventListener('submit', (evt) => {
   profileName.textContent = nameInput.value;
   profileText.textContent = jobInput.value;
 
-  toggleModal(editModal);
+  closeModal(editModal);
 });
 
 
 //photoModal
 openCardModalButton.addEventListener('click', () => {
-  toggleModal(cardModal);
+
+  const button = cardModal.querySelector('.pop-up__button');
+  button.classList.add('pop-up__button_disabled');
+  button.disabled = true;
+  openModal(cardModal);
   placeInput.value = '';
   linkInput.value = '';
+  addInputReset(cardModal);
 });
 
 closeCardModalButton.addEventListener('click', () => {
-  toggleModal(cardModal);
-  addInputReset(cardModal);
+  closeModal(cardModal);
 });
 
 const formElementAddCard = cardModal.querySelector('.pop-up__form');
 
-closePhotoModalButton.addEventListener('click', () => toggleModal(photoModal));
+closePhotoModalButton.addEventListener('click', () => closeModal(photoModal));
 
 //close modal on overlay
 
@@ -87,26 +96,18 @@ const wireCloseModalOverlay = () => {
   modals.forEach((modal) => {
     modal.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('pop-up_opened')) {
-        toggleModal(modal);
-        addInputReset(modal);
+        closeModal(modal);
       }
     });
   });
 };
 
 //close modal on esc
-
-const wireCloseModalEsc = (modal, on) => {
-  function removeModalOnEscape(evt) {
-    if (evt.key === 'Escape') {
-      modal.classList.remove('pop-up_opened');
-      addInputReset(modal);
-    };
-  }
-  if (on)
-    document.addEventListener('keydown', removeModalOnEscape);
-  else
-    document.removeEventListener('keydown', removeModalOnEscape);
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.pop-up_opened');
+    closeModal(openedPopup);
+  };
 };
 
 
@@ -127,7 +128,7 @@ function toggleLike(evt) {
 };
 
 function handlePreviewPicture() {
-  toggleModal(photoModal);
+  openModal(photoModal);
 };
 
 function createCard(cardData) {
@@ -175,7 +176,7 @@ formElementAddCard.addEventListener('submit', (evt) => {
     link: linkInput.value
   });
 
-  toggleModal(cardModal);
+  closeModal(cardModal);
   formElementAddCard.reset();
 
 });
