@@ -69,11 +69,13 @@ class Card {
     fullSizePhoto.src = this._link;
     fullSizePhotoTitle.textContent = this._name;
     photoModal.classList.add('pop-up_opened');
+    document.addEventListener('keydown', this._closeByEscape);
   }
 
   _handleClosePopup() {
     fullSizePhoto.src = '';
     photoModal.classList.remove('pop-up_opened');
+    document.removeEventListener('keydown', this._closeByEscape);
   }
 
   _handleDeleteIcone() {
@@ -101,16 +103,17 @@ class Card {
     this._element.querySelector('.card__delete-button').addEventListener('click', () => {
       this._handleDeleteIcone();
     });
-
-
-    //TODO BY ESC
-    // this._element.addEventListener('keydown', (event) => {
-    //   if (event.key === 'Escape') {
-    //     this._handleClosePopup();
-    //   };
-    // });
   };
+
+  _closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+      this._handleClosePopup();
+    };
+  };
+
 };
+
+
 
 function renderCard(item) {
   const card = new Card(item, '.card-template');
