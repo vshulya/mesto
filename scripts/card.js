@@ -69,13 +69,13 @@ class Card {
     fullSizePhoto.src = this._link;
     fullSizePhotoTitle.textContent = this._name;
     photoModal.classList.add('pop-up_opened');
-    document.addEventListener('keydown', this._closeByEscape);
+    document.addEventListener('keydown', this._closeByEscape.bind(this));
   }
 
   _handleClosePopup() {
     fullSizePhoto.src = '';
     photoModal.classList.remove('pop-up_opened');
-    document.removeEventListener('keydown', this._closeByEscape);
+    document.removeEventListener('keydown', this._closeByEscape.bind(this));
   }
 
   _handleDeleteIcone() {
