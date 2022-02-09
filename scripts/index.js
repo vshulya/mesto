@@ -15,6 +15,25 @@ const jobInput = document.querySelector('.pop-up__input_type_job');
 const placeInput = document.querySelector('.pop-up__input_type_place');
 const linkInput = document.querySelector('.pop-up__input_type_link');
 
+var selectors = {
+  formSelector: '.pop-up__form',
+  inputSelector: '.pop-up__input',
+  submitButtonSelector: '.pop-up__button',
+  inactiveButtonClass: 'pop-up__button_disabled',
+  inputErrorClass: 'pop-up__input_type_error',
+  errorClass: 'pop-up__input-error_visible',
+
+}
+
+//validation
+const editFormValidator = new FormValidator(selectors, editModal);
+
+const addCardFormValidator = new FormValidator(selectors, cardModal);
+
+
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+
 //function openModal
 function openModal(modal) {
   modal.classList.add('pop-up_opened');
@@ -122,3 +141,4 @@ formElementAddCard.addEventListener('submit', (evt) => {
 wireCloseModalOverlay();
 
 import { initialCards, photoModal, closePhotoModalButton, fullSizePhoto, fullSizePhotoTitle, Card, renderCard } from './card.js';
+import { FormValidator } from './validate.js';
