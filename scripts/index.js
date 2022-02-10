@@ -15,7 +15,7 @@ const jobInput = document.querySelector('.pop-up__input_type_job');
 const placeInput = document.querySelector('.pop-up__input_type_place');
 const linkInput = document.querySelector('.pop-up__input_type_link');
 
-var selectors = {
+const selectors = {
   formSelector: '.pop-up__form',
   inputSelector: '.pop-up__input',
   submitButtonSelector: '.pop-up__button',
@@ -140,5 +140,5 @@ formElementAddCard.addEventListener('submit', (evt) => {
 
 wireCloseModalOverlay();
 
-import { initialCards, photoModal, closePhotoModalButton, fullSizePhoto, fullSizePhotoTitle, Card, renderCard } from './card.js';
-import { FormValidator } from './validate.js';
+import { initialCards, photoModal, closePhotoModalButton, fullSizePhoto, fullSizePhotoTitle, Card, renderCard } from './Card.js';
+import { FormValidator } from './FormValidator.js';

@@ -58,6 +58,7 @@ class Card {
 
     // Добавим данные
     this._element.querySelector('.card__image').src = this._link;
+    this._element.querySelector('.card__image').alt = this._name;
     this._element.querySelector('.card__text').textContent = this._name;
 
     // Вернём элемент наружу
@@ -67,6 +68,7 @@ class Card {
 
   _handleOpenPopup() {
     fullSizePhoto.src = this._link;
+    fullSizePhoto.alt = this._name;
     fullSizePhotoTitle.textContent = this._name;
     photoModal.classList.add('pop-up_opened');
     document.addEventListener('keydown', this._closeByEscape.bind(this));
