@@ -1,5 +1,5 @@
 //TODO how to add an object in constructor
-class FormValidator {
+export class FormValidator {
   constructor(data, formElement) {
 
     this._inputSelector = data.inputSelector;
@@ -75,6 +75,6 @@ class FormValidator {
   };
 };
 
-export { FormValidator };
+
 
 
