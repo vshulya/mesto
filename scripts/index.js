@@ -1,12 +1,18 @@
+import { Card, renderCard } from './Сard.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards, selectors } from './constants.js';
+
 //modal
 const editModal = document.querySelector('.pop-up_place_title');
 const cardModal = document.querySelector('.pop-up_place_card');
+const photoModal = document.querySelector('.pop-up_place_fullsize-photo');
 
 //button
 const openEditModalButton = document.querySelector('.profile__edit-button');
 const closeEditModalButton = editModal.querySelector('.pop-up__close');
 const openCardModalButton = document.querySelector('.profile__add-button');
 const closeCardModalButton = cardModal.querySelector('.pop-up__close');
+const closePhotoModalButton = photoModal.querySelector('.pop-up__close');
 
 
 //input
@@ -15,27 +21,12 @@ const jobInput = document.querySelector('.pop-up__input_type_job');
 const placeInput = document.querySelector('.pop-up__input_type_place');
 const linkInput = document.querySelector('.pop-up__input_type_link');
 
-const selectors = {
-  formSelector: '.pop-up__form',
-  inputSelector: '.pop-up__input',
-  submitButtonSelector: '.pop-up__button',
-  inactiveButtonClass: 'pop-up__button_disabled',
-  inputErrorClass: 'pop-up__input_type_error',
-  errorClass: 'pop-up__input-error_visible',
-
-}
-
-//validation
+//validation 
 const editFormValidator = new FormValidator(selectors, editModal);
-
 const addCardFormValidator = new FormValidator(selectors, cardModal);
 
-
-editFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
-
 //function openModal
-function openModal(modal) {
+export function openModal(modal) {
   modal.classList.add('pop-up_opened');
   document.addEventListener('keydown', closeByEscape);
 };
@@ -51,22 +42,11 @@ function closeModal(modal) {
 const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
 
-
-const addInputReset = (modal) => {
-  const inputs = modal.querySelectorAll('.pop-up__input');
-  inputs.forEach(input => {
-    const error = modal.querySelector(`#${input.id}-error`);
-    error.classList.remove('pop-up__input-error_visible');
-    error.textContent = '';
-    input.classList.remove('pop-up__input_type_error');
-  });
-};
-
 openEditModalButton.addEventListener('click', function () {
   openModal(editModal);
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
-  addInputReset(editModal);
+  editFormValidator.addInputReset();
 });
 
 closeEditModalButton.addEventListener('click', () => {
@@ -86,20 +66,24 @@ formElementEdit.addEventListener('submit', (evt) => {
 });
 
 
-//photoModal
+//cardModal
 openCardModalButton.addEventListener('click', () => {
 
   const button = cardModal.querySelector('.pop-up__button');
   button.classList.add('pop-up__button_disabled');
   button.disabled = true;
   openModal(cardModal);
-  placeInput.value = '';
+  placeInput.value = ''; //TODO reset
   linkInput.value = '';
-  addInputReset(cardModal);
+  addCardFormValidator.addInputReset();
 });
 
 closeCardModalButton.addEventListener('click', () => {
   closeModal(cardModal);
+});
+
+closePhotoModalButton.addEventListener('click', () => {
+  closeModal(photoModal);
 });
 
 const formElementAddCard = cardModal.querySelector('.pop-up__form');
@@ -140,5 +124,13 @@ formElementAddCard.addEventListener('submit', (evt) => {
 
 wireCloseModalOverlay();
 
-import { initialCards, photoModal, closePhotoModalButton, fullSizePhoto, fullSizePhotoTitle, Card, renderCard } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+//validation
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+
+//CARDS
+initialCards.forEach((item) => {
+  renderCard(item);
+});
+
+export { photoModal };

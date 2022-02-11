@@ -1,4 +1,3 @@
-//TODO how to add an object in constructor
 export class FormValidator {
   constructor(data, formElement) {
 
@@ -9,8 +8,17 @@ export class FormValidator {
     this._errorClass = data.errorClass;
 
     this._formElement = formElement;
+  };
 
-
+  //TODO where to execute 
+  addInputReset = () => {
+    const inputs = this._formElement.querySelectorAll('.pop-up__input');
+    inputs.forEach(input => {
+      const error = this._formElement.querySelector(`#${input.id}-error`);
+      error.classList.remove('pop-up__input-error_visible');
+      error.textContent = '';
+      input.classList.remove('pop-up__input_type_error');
+    });
   };
 
   _showInputError = (input, errorMessage) => {
@@ -30,10 +38,8 @@ export class FormValidator {
 
   _checkInputValidity = (input) => {
     if (!input.validity.valid) {
-      console.log('Invalid');
       this._showInputError(input, input.validationMessage);
     } else {
-      console.log('Valid');
       this._hideInputError(input);
     };
   };
