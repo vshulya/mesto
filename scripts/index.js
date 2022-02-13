@@ -1,4 +1,4 @@
-import { Card, renderCard } from './Сard.js';
+import { Card } from './Сard.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards, selectors } from './constants.js';
 
@@ -129,6 +129,13 @@ editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 //CARDS
+
+function renderCard(item) {
+  const card = new Card(item, '.card-template');
+  const cardElement = card.generateCard();
+  document.querySelector('.cards-list').prepend(cardElement);
+};
+
 initialCards.forEach((item) => {
   renderCard(item);
 });

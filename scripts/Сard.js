@@ -70,12 +70,4 @@ class Card {
   };
 };
 
-function renderCard(item) {
-  const card = new Card(item, '.card-template');
-  const cardElement = card.generateCard();
-  document.querySelector('.cards-list').prepend(cardElement);
-};
-
-
-
-export { Card, renderCard };
+export { Card };
