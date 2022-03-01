@@ -1,7 +1,7 @@
-import { openModal, photoModal } from './index.js';
+import { openModal, photoModal } from '../pages/index.js';
 // Class CARD
 
-class Card {
+export default class Card {
   constructor(data, cardSelector) {
     this._link = data.link;
     this._name = data.name;
@@ -69,5 +69,3 @@ class Card {
     });
   };
 };
-
-export { Card };

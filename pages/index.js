@@ -1,25 +1,27 @@
-import { Card } from './Сard.js';
-import { FormValidator } from './FormValidator.js';
-import { initialCards, selectors } from './constants.js';
-
-//modal
-const editModal = document.querySelector('.pop-up_place_title');
-const cardModal = document.querySelector('.pop-up_place_card');
-const photoModal = document.querySelector('.pop-up_place_fullsize-photo');
-
-//button
-const openEditModalButton = document.querySelector('.profile__edit-button');
-const closeEditModalButton = editModal.querySelector('.pop-up__close');
-const openCardModalButton = document.querySelector('.profile__add-button');
-const closeCardModalButton = cardModal.querySelector('.pop-up__close');
-const closePhotoModalButton = photoModal.querySelector('.pop-up__close');
-
-
-//input
-const nameInput = document.querySelector('.pop-up__input_type_name');
-const jobInput = document.querySelector('.pop-up__input_type_job');
-const placeInput = document.querySelector('.pop-up__input_type_place');
-const linkInput = document.querySelector('.pop-up__input_type_link');
+import Section from '../components/Section.js';
+import Card from '../components/Сard.js';
+import FormValidator from '../components/FormValidator.js';
+import {
+  initialCards,
+  selectors,
+  editModal,
+  cardModal,
+  photoModal,
+  openEditModalButton,
+  closeEditModalButton,
+  openCardModalButton,
+  closeCardModalButton,
+  closePhotoModalButton,
+  nameInput,
+  jobInput,
+  placeInput,
+  linkInput,
+  profileName,
+  profileText,
+  formElementEdit,
+  formElementAddCard,
+  cardListSection,
+} from '../utils/constants.js';
 
 //validation 
 const editFormValidator = new FormValidator(selectors, editModal);
@@ -37,11 +39,6 @@ function closeModal(modal) {
   document.removeEventListener('keydown', closeByEscape);
 };
 
-
-//editModal
-const profileName = document.querySelector('.profile__name');
-const profileText = document.querySelector('.profile__text');
-
 openEditModalButton.addEventListener('click', function () {
   openModal(editModal);
   nameInput.value = profileName.textContent;
@@ -53,8 +50,6 @@ closeEditModalButton.addEventListener('click', () => {
   closeModal(editModal);
 });
 
-
-const formElementEdit = editModal.querySelector('.pop-up__form');
 
 formElementEdit.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -86,10 +81,7 @@ closePhotoModalButton.addEventListener('click', () => {
   closeModal(photoModal);
 });
 
-const formElementAddCard = cardModal.querySelector('.pop-up__form');
-
 //close modal on overlay
-
 const wireCloseModalOverlay = () => {
   const modals = document.querySelectorAll('.pop-up');
   modals.forEach((modal) => {
@@ -130,14 +122,26 @@ addCardFormValidator.enableValidation();
 
 //CARDS
 
-function renderCard(item) {
-  const card = new Card(item, '.card-template');
-  const cardElement = card.generateCard();
-  document.querySelector('.cards-list').prepend(cardElement);
-};
+// function renderCard(item) {
+//   const card = new Card(item, '.card-template');
+//   const cardElement = card.generateCard();
+//   document.querySelector('.cards-list').prepend(cardElement);
+// };
 
-initialCards.forEach((item) => {
-  renderCard(item);
-});
+// initialCards.forEach((item) => {
+//   renderCard(item);
+// });
+
+const cardsList = new Section({
+  data: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '.card-template');
+    const cardElement = card.generateCard();
+
+    cardsList.addItem(cardElement);
+  }
+},
+  cardListSection
+)
 
 export { photoModal };
