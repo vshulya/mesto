@@ -1,4 +1,8 @@
+import UserInfo from '../components/UserInfo.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
 import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
 import {
@@ -21,121 +25,49 @@ import {
   formElementEdit,
   formElementAddCard,
   cardListSection,
+  fullSizePhoto,
+  fullSizePhotoTitle
 } from '../utils/constants.js';
+
+const userInfo = new UserInfo(profileName, profileText);
 
 //validation 
 const editFormValidator = new FormValidator(selectors, editModal);
 const addCardFormValidator = new FormValidator(selectors, cardModal);
-
-//function openModal
-export function openModal(modal) {
-  modal.classList.add('pop-up_opened');
-  document.addEventListener('keydown', closeByEscape);
-};
-
-//function closeModal
-function closeModal(modal) {
-  modal.classList.remove('pop-up_opened');
-  document.removeEventListener('keydown', closeByEscape);
-};
-
-openEditModalButton.addEventListener('click', function () {
-  openModal(editModal);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileText.textContent;
-  editFormValidator.addInputReset();
-});
-
-closeEditModalButton.addEventListener('click', () => {
-  closeModal(editModal);
-});
-
-
-formElementEdit.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileText.textContent = jobInput.value;
-
-  closeModal(editModal);
-});
-
-
-//cardModal
-openCardModalButton.addEventListener('click', () => {
-
-  const button = cardModal.querySelector('.pop-up__button');
-  button.classList.add('pop-up__button_disabled');
-  button.disabled = true;
-  openModal(cardModal);
-  placeInput.value = ''; //TODO reset
-  linkInput.value = '';
-  addCardFormValidator.addInputReset();
-});
-
-closeCardModalButton.addEventListener('click', () => {
-  closeModal(cardModal);
-});
-
-closePhotoModalButton.addEventListener('click', () => {
-  closeModal(photoModal);
-});
-
-//close modal on overlay
-const wireCloseModalOverlay = () => {
-  const modals = document.querySelectorAll('.pop-up');
-  modals.forEach((modal) => {
-    modal.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('pop-up_opened')) {
-        closeModal(modal);
-      }
-    });
-  });
-};
-
-//close modal on esc
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.pop-up_opened');
-    closeModal(openedPopup);
-  };
-};
-
-formElementAddCard.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-
-  renderCard({
-    name: placeInput.value,
-    link: linkInput.value
-  });
-
-  closeModal(cardModal);
-  formElementAddCard.reset();
-
-});
-
-wireCloseModalOverlay();
-
-//validation
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
+
+const editPopup = new PopupWithForm(editModal, userInfo.setUserInfo.bind(userInfo), openEditModalButton, editFormValidator, userInfo.getUserInfo.bind(userInfo));
+editPopup.setEventListeners();
+
+const cardPopup = new PopupWithForm(cardModal, renderCard, openCardModalButton, addCardFormValidator);
+cardPopup.setEventListeners();
+
+
+// photoModal
+const popupWithImage = new PopupWithImage(photoModal);
+
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+  popupWithImage.setEventListeners();
+}
+
+
 //CARDS
+function renderCard(item) {
+  const card = new Card(item, '.card-template', handleCardClick);
 
-// function renderCard(item) {
-//   const card = new Card(item, '.card-template');
-//   const cardElement = card.generateCard();
-//   document.querySelector('.cards-list').prepend(cardElement);
-// };
+  const cardElement = card.generateCard();
 
-// initialCards.forEach((item) => {
-//   renderCard(item);
-// });
+  cardsList.addItem(cardElement);
+};
 
 const cardsList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.card-template');
+    const card = new Card(item, '.card-template', handleCardClick);
+
     const cardElement = card.generateCard();
 
     cardsList.addItem(cardElement);
@@ -144,4 +76,5 @@ const cardsList = new Section({
   cardListSection
 )
 
-export { photoModal };
+cardsList.renderItems();
+
