@@ -5,19 +5,19 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Место</title>
-  <link href="./pages/index.css" rel="stylesheet">
+  <!-- <link href="./pages/index.css" rel="stylesheet"> -->
 </head>
 
 <body class="body">
   <div class="page">
     <div class="container">
       <header class="header">
-        <img src="./images/logo.svg" alt="лого" class="logo">
+        <img src=<%=require("./images/logo.svg")%> alt="лого" class="logo">
       </header>
       <main class="content">
         <section class="profile">
           <div class="profile__avatar">
-            <img src="./images/profile-picture.png" alt="фотография профиля" class="profile__image">
+            <img src=<%=require("./images/profile-picture.png")%> alt="фотография профиля" class="profile__image">
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <p class="profile__text">Исследователь океана</p>
@@ -41,12 +41,12 @@
             <form action="submit" novalidate name="pop-up" class="pop-up__form">
               <fieldset class="pop-up__fieldset">
                 <label class="pop-up__field">
-                  <input type="text" id="name-input" value="Жак-Ив Кусто" placeholder="Имя"
+                  <input type="text" id="name-input" value="Жак-Ив Кусто" placeholder="Имя" name="name"
                     class="pop-up__input pop-up__input_type_name" minlength="2" maxlength="40" required>
                   <span id="name-input-error" class="pop-up__input-error"></span>
                 </label>
                 <label class="pop-up__field">
-                  <input type="text" id="job-input" value="Исследователь океана" placeholder="Описание"
+                  <input type="text" id="job-input" value="Исследователь океана" placeholder="Описание" name="about"
                     class="pop-up__input pop-up__input_type_job" minlength="2" maxlength="200" required>
                   <span id="job-input-error" class="pop-up__input-error"></span>
                 </label>
@@ -65,12 +65,12 @@
             <form action="submit" novalidate name="pop-up" class="pop-up__form">
               <fieldset class="pop-up__fieldset">
                 <label class="pop-up__field">
-                  <input type="text" id="place-input" value="" placeholder="Название"
+                  <input type="text" id="place-input" value="" placeholder="Название" name="name"
                     class="pop-up__input pop-up__input_type_place" minlength="2" maxlength="30" required>
                   <span id="place-input-error" class="pop-up__input-error"></span>
                 </label>
                 <label class="pop-up__field">
-                  <input type="url" id="link-input" value="" placeholder="Ссылка на картинку"
+                  <input type="url" id="link-input" value="" placeholder="Ссылка на картинку" name="link"
                     class="pop-up__input pop-up__input_type_link" required>
                   <span id="link-input-error" class="pop-up__input-error"></span>
                 </label>
@@ -106,7 +106,7 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./pages/index.js"></script>
+  <!-- <script type="module" src="./pages/index.js"></script> -->
 
 </body>
 

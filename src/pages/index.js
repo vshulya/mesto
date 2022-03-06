@@ -29,6 +29,8 @@ import {
   fullSizePhotoTitle
 } from '../utils/constants.js';
 
+import './index.css';
+
 const userInfo = new UserInfo(profileName, profileText);
 
 //validation 

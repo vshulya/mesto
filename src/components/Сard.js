@@ -1,11 +1,12 @@
-import { openModal, photoModal } from '../pages/index.js';
+import { photoModal } from '../utils/constants.js';
 // Class CARD
 
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._link = data.link;
     this._name = data.name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -25,6 +26,11 @@ export default class Card {
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
     this._setEventListeners();
+    const fullSizePhoto = document.querySelector('.pop-up__fullsize-photo');
+    const fullSizePhotoTitle = document.querySelector('.pop-up__figcaption');
+    fullSizePhoto.src = this._link;
+    fullSizePhoto.alt = this._name;
+    fullSizePhotoTitle.textContent = this._name;
 
     // Добавим данные
 
@@ -34,16 +40,6 @@ export default class Card {
 
     // Вернём элемент наружу
     return this._element;
-  }
-
-
-  _handleOpenPopup() {
-    const fullSizePhoto = document.querySelector('.pop-up__fullsize-photo');
-    const fullSizePhotoTitle = document.querySelector('.pop-up__figcaption');
-    fullSizePhoto.src = this._link;
-    fullSizePhoto.alt = this._name;
-    fullSizePhotoTitle.textContent = this._name;
-    openModal(photoModal);
   }
 
   _handleDeleteIcone() {
@@ -61,7 +57,7 @@ export default class Card {
     });
 
     this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._handleOpenPopup();
+      this._handleCardClick(this._name, this._link);
     });
 
     this._element.querySelector('.card__delete-button').addEventListener('click', () => {

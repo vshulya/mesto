@@ -11,7 +11,7 @@ export default class FormValidator {
   };
 
   //TODO where to execute 
-  addInputReset = () => {
+  resetInputs = () => {
     const inputs = this._formElement.querySelectorAll('.pop-up__input');
     inputs.forEach(input => {
       const error = this._formElement.querySelector(`#${input.id}-error`);

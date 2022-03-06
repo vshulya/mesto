@@ -64,3 +64,7 @@ export const profileText = document.querySelector('.profile__text');
 
 export const formElementEdit = editModal.querySelector('.pop-up__form');
 export const formElementAddCard = cardModal.querySelector('.pop-up__form');
+
+//photoModal 
+export const fullSizePhoto = document.querySelector('.pop-up__fullsize-photo');
+export const fullSizePhotoTitle = document.querySelector('.pop-up__figcaption');
