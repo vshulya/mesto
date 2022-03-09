@@ -8,11 +8,12 @@ export default class PopupWithForm extends Popup {
     this._formValidator = formValidator;
     this._getExistingValues = getExistingValues;
     this._form = this._element.querySelector('.pop-up__form');
+    this._inputList = this._element.querySelectorAll('.pop-up__input');
   }
 
   _getInputValues() {
     // достаём все элементы полей
-    this._inputList = this._element.querySelectorAll('.pop-up__input');
+    // this._inputList = this._element.querySelectorAll('.pop-up__input');
 
     // создаём пустой объект
     this._formValues = {};
@@ -34,8 +35,8 @@ export default class PopupWithForm extends Popup {
       const inputElement = this._element.querySelector(`input[name=${inputName}]`)
       inputElement.value = inputValue;
     }
-
   }
+
   setEventListeners() {
     this._element.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -46,7 +47,7 @@ export default class PopupWithForm extends Popup {
       this.open();
       this._formValidator.resetInputs();
       this.setupExistingValues();
-
+      this._formValidator.resetValidation();
     });
     super.setEventListeners();
   }

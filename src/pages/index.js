@@ -46,37 +46,32 @@ editPopup.setEventListeners();
 const cardPopup = new PopupWithForm(cardModal, renderCard, openCardModalButton, addCardFormValidator);
 cardPopup.setEventListeners();
 
-
-// photoModal
-const popupWithImage = new PopupWithImage(photoModal);
-
-function handleCardClick(name, link) {
-  popupWithImage.open(name, link);
-  popupWithImage.setEventListeners();
-}
-
-
 //CARDS
-function renderCard(item) {
+function createCard(item) {
   const card = new Card(item, '.card-template', handleCardClick);
 
   const cardElement = card.generateCard();
+  return cardElement;
+};
 
+function renderCard(item) {
+  const cardElement = createCard(item);
   cardsList.addItem(cardElement);
 };
 
 const cardsList = new Section({
   data: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '.card-template', handleCardClick);
-
-    const cardElement = card.generateCard();
-
-    cardsList.addItem(cardElement);
-  }
+  renderer: renderCard
 },
   cardListSection
 )
 
 cardsList.renderItems();
 
+// photoModal
+const popupWithImage = new PopupWithImage(photoModal);
+popupWithImage.setEventListeners();
+
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+}
