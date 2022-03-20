@@ -71,15 +71,7 @@ const handleProfileFormSubmit = (data) => {
 const handleCardFormSubmit = (data) => {
   api.addCard(data.name, data.link, data.likes)
     .then(res => {
-      const card = createCard({
-        name: res.name,
-        link: res.link,
-        likes: res.likes,
-        id: res._id,
-        userId: userId,
-        ownerId: res.owner._id
-      })
-      cardsList.addItem(card);
+      createAndAddCard(res);
       cardPopup.close();
     })
 };
@@ -92,7 +84,6 @@ const handleProfilePhotoSubmit = (data) => {
       editPopup.close();
     });
 };
-
 
 const editPopup = new PopupWithForm(editModal, handleProfileFormSubmit, userInfo.getUserInfo.bind(userInfo));
 editPopup.setEventListeners();
@@ -149,6 +140,18 @@ function renderCard(item) {
   cardsList.addItem(cardElement);
 };
 
+function createAndAddCard(cardData) {
+  const card = createCard({
+    name: cardData.name,
+    link: cardData.link,
+    likes: cardData.likes,
+    id: cardData._id,
+    userId: userId,
+    ownerId: cardData.owner._id
+  })
+  cardsList.addItem(card);
+};
+
 const cardsList = new Section({
   data: [],
   renderer: renderCard
@@ -158,15 +161,7 @@ const cardsList = new Section({
 api.getInitialCards()
   .then(cardData => {
     cardData.forEach(data => {
-      const card = createCard({
-        name: data.name,
-        link: data.link,
-        likes: data.likes,
-        id: data._id,
-        userId: userId,
-        ownerId: data.owner._id
-      })
-      cardsList.addItem(card);
+      createAndAddCard(data);
 
       cardsList.renderItems();
     })
