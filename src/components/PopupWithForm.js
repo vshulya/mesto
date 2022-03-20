@@ -32,6 +32,10 @@ export default class PopupWithForm extends Popup {
     this._submitButton.textContent = 'Сохранение...';
   }
 
+  _hideLoading() {
+    this._submitButton.textContent = this._buttonTextBackup;
+  }
+
 
   setEventListeners() {
     this._element.addEventListener('submit', (evt) => {
@@ -46,6 +50,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._submitButton.textContent = this._buttonTextBackup;
+    this._hideLoading();
   }
 }
