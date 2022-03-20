@@ -17,16 +17,36 @@
       <main class="content">
         <section class="profile">
           <div class="profile__avatar">
-            <img src=<%=require("./images/profile-picture.png")%> alt="фотография профиля" class="profile__image">
+            <div class="profile__image-button"><img src=<%=require("./images/profile-picture.png")%> alt="фотография
+              профиля" class="profile__image"></div>
             <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <p class="profile__text">Исследователь океана</p>
+              <h1 class="profile__name"></h1>
+              <p class="profile__text"></p>
               <button type="button" class="profile__edit-button button">
               </button>
             </div>
           </div>
           <button type="button" class="profile__add-button button">
           </button>
+        </section>
+
+        <section class="pop-up pop-up_place_profile-photo">
+          <div class="pop-up__container">
+            <button type="button" class="pop-up__close button"></button>
+            <h2 class="pop-up__title">Обновить аватар</h2>
+
+            <!--FORM3-->
+            <form action="submit" novalidate name="pop-up" class="pop-up__form">
+              <fieldset class="pop-up__fieldset">
+                <label class="pop-up__field">
+                  <input type="url" id="link-input" value="" placeholder="Ссылка на аватар" name="avatar"
+                    class="pop-up__input pop-up__input_type_profile-photo-link" required>
+                  <span id="link-input-error" class="pop-up__input-error"></span>
+                </label>
+                <button type="submit" class="pop-up__button button" disabled>Сохранить</button>
+              </fieldset>
+            </form>
+          </div>
         </section>
         <section class="cards">
           <ul class="cards-list"></ul>
@@ -41,12 +61,12 @@
             <form action="submit" novalidate name="pop-up" class="pop-up__form">
               <fieldset class="pop-up__fieldset">
                 <label class="pop-up__field">
-                  <input type="text" id="name-input" value="Жак-Ив Кусто" placeholder="Имя" name="name"
+                  <input type="text" id="name-input" value="" placeholder="Имя" name="name"
                     class="pop-up__input pop-up__input_type_name" minlength="2" maxlength="40" required>
                   <span id="name-input-error" class="pop-up__input-error"></span>
                 </label>
                 <label class="pop-up__field">
-                  <input type="text" id="job-input" value="Исследователь океана" placeholder="Описание" name="about"
+                  <input type="text" id="job-input" value="" placeholder="Описание" name="about"
                     class="pop-up__input pop-up__input_type_job" minlength="2" maxlength="200" required>
                   <span id="job-input-error" class="pop-up__input-error"></span>
                 </label>
@@ -79,6 +99,16 @@
             </form>
           </div>
         </section>
+
+        <section class="pop-up pop-up_place_card-delete ">
+          <div class="pop-up__container">
+            <button type="button" class="pop-up__close button"></button>
+            <h2 class="pop-up__title">Вы уверены?</h2>
+            <form action="submit" novalidate name="pop-up" class="pop-up__form">
+              <button type="submit" class="pop-up__button button">Да</button>
+            </form>
+          </div>
+        </section>
         <section class="pop-up pop-up_place_fullsize-photo">
 
           <!-- pop-up_opened -->
@@ -102,7 +132,12 @@
       <img src="#" alt="#" class="card__image">
       <div class="card__description">
         <h2 class="card__text"></h2>
-        <button type="button" class="card__like button"></button>
+        <div class="card__likes">
+
+          <button type="button" class="card__like button">
+          </button>
+          <span class="card__likes-number"></span>
+        </div>
       </div>
     </li>
   </template>

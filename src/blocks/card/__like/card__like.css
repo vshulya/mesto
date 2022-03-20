@@ -1,5 +1,5 @@
 .card__like {
-  padding: 0;
+  padding: 3px 0 11px 27px;
   margin: 0;
   background: transparent url(../../../images/like.svg);
   object-fit: cover;

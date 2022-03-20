@@ -43,6 +43,8 @@ export const cardList = document.querySelector('.cards-list');
 export const editModal = document.querySelector('.pop-up_place_title');
 export const cardModal = document.querySelector('.pop-up_place_card');
 export const photoModal = document.querySelector('.pop-up_place_fullsize-photo');
+export const dltCardModal = document.querySelector('.pop-up_place_card-delete');
+export const profilePhotoModal = document.querySelector('.pop-up_place_profile-photo');
 
 //button
 export const openEditModalButton = document.querySelector('.profile__edit-button');
@@ -50,6 +52,9 @@ export const closeEditModalButton = editModal.querySelector('.pop-up__close');
 export const openCardModalButton = document.querySelector('.profile__add-button');
 export const closeCardModalButton = cardModal.querySelector('.pop-up__close');
 export const closePhotoModalButton = photoModal.querySelector('.pop-up__close');
+export const openDltCardModalButton = document.querySelector('.card__delete-button');
+export const openProfilePhotoModalButton = document.querySelector('.profile__image-button');
+export const profileImageElement = document.querySelector('.profile__image');
 
 
 //input
@@ -64,6 +69,7 @@ export const profileText = document.querySelector('.profile__text');
 
 export const formElementEdit = editModal.querySelector('.pop-up__form');
 export const formElementAddCard = cardModal.querySelector('.pop-up__form');
+export const formElementProfilePhotoModal = profilePhotoModal.querySelector('.pop-up__form');
 
 //photoModal 
 export const fullSizePhoto = document.querySelector('.pop-up__fullsize-photo');
