@@ -61,7 +61,6 @@ profilePhotoPopupValidator.enableValidation();
 
 const handleProfileFormSubmit = (data) => {
   const { name, about } = data
-
   api.editProfile(name, about)
     .then(res => {
       userInfo.setUserInfo(res);
@@ -106,14 +105,6 @@ popupDeleteCard.setEventListeners();
 
 const profilePhotoPopup = new PopupWithForm(profilePhotoModal, handleProfilePhotoSubmit);
 profilePhotoPopup.setEventListeners();
-
-
-// function handleCardDelete(cardElement) {
-//   function onDeleteFunction() {
-//     cardElement.remove();
-//   }
-//   popupDeleteCard.open(onDeleteFunction);
-// }
 
 //CARDS
 function createCard(item) {

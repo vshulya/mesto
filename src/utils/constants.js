@@ -54,10 +54,9 @@ export const closeCardModalButton = cardModal.querySelector('.pop-up__close');
 export const closePhotoModalButton = photoModal.querySelector('.pop-up__close');
 export const openDltCardModalButton = document.querySelector('.card__delete-button');
 export const openProfilePhotoModalButton = document.querySelector('.profile__image-button');
-export const profileImageElement = document.querySelector('.profile__image');
 
 
-//input
+//inputs
 export const nameInput = document.querySelector('.pop-up__input_type_name');
 export const jobInput = document.querySelector('.pop-up__input_type_job');
 export const placeInput = document.querySelector('.pop-up__input_type_place');
@@ -67,10 +66,14 @@ export const linkInput = document.querySelector('.pop-up__input_type_link');
 export const profileName = document.querySelector('.profile__name');
 export const profileText = document.querySelector('.profile__text');
 
-export const formElementEdit = editModal.querySelector('.pop-up__form');
-export const formElementAddCard = cardModal.querySelector('.pop-up__form');
-export const formElementProfilePhotoModal = profilePhotoModal.querySelector('.pop-up__form');
+//avatarModal
+export const profileImageElement = document.querySelector('.profile__image');
 
 //photoModal 
 export const fullSizePhoto = document.querySelector('.pop-up__fullsize-photo');
 export const fullSizePhotoTitle = document.querySelector('.pop-up__figcaption');
+
+//popupForms
+export const formElementEdit = editModal.querySelector('.pop-up__form');
+export const formElementAddCard = cardModal.querySelector('.pop-up__form');
+export const formElementProfilePhotoModal = profilePhotoModal.querySelector('.pop-up__form');
