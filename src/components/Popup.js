@@ -25,7 +25,7 @@ export default class Popup {
     });
 
     //close modal on overlay
-    this._element.addEventListener('click', (evt) => {
+    this._element.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('pop-up_opened')) {
         this.close();
       }

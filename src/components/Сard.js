@@ -33,8 +33,9 @@ export default class Card {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
     this._cardLike = this._element.querySelector('.card__like');
-    // Добавим данные
+    this._likeCountElement = this._element.querySelector('.card__likes-number');
 
+    // Добавим данные
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector('.card__text').textContent = this._name;
@@ -60,8 +61,7 @@ export default class Card {
 
   setLikes(newLikes) {
     this._likes = newLikes;
-    const likeCountElement = this._element.querySelector('.card__likes-number');
-    likeCountElement.textContent = this._likes.length;
+    this._likeCountElement.textContent = this._likes.length;
 
     this._handleLikeIcon();
 

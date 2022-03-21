@@ -41,12 +41,6 @@ import './index.css';
 
 let userId
 
-api.getProfile()
-  .then(res => {
-    userInfo.setUserInfo(res)
-    userId = res._id
-  })
-
 
 
 const userInfo = new UserInfo(profileName, profileText, profileImageElement);
@@ -65,7 +59,10 @@ const handleProfileFormSubmit = (data) => {
     .then(res => {
       userInfo.setUserInfo(res);
       editPopup.close();
-    });
+    })
+    .catch(error => {
+      console.log(error)
+    })
 };
 
 const handleCardFormSubmit = (data) => {
@@ -74,6 +71,9 @@ const handleCardFormSubmit = (data) => {
       createAndAddCard(res);
       cardPopup.close();
     })
+    .catch(error => {
+      console.log(error)
+    })
 };
 
 const handleProfilePhotoSubmit = (data) => {
@@ -81,8 +81,11 @@ const handleProfilePhotoSubmit = (data) => {
   api.editAvatar(data.avatar)
     .then(res => {
       userInfo.setUserInfo(res);
-      editPopup.close();
-    });
+      profilePhotoPopup.close();
+    })
+    .catch(error => {
+      console.log(error)
+    })
 };
 
 const editPopup = new PopupWithForm(editModal, handleProfileFormSubmit, userInfo.getUserInfo.bind(userInfo));
@@ -115,6 +118,9 @@ function createCard(item) {
             card.deleteCard(res);
             popupDeleteCard.close();
           })
+          .catch(error => {
+            console.log(error)
+          })
       });
     },
     (id) => {
@@ -123,11 +129,17 @@ function createCard(item) {
           .then(res => {
             card.setLikes(res.likes)
           })
+          .catch(error => {
+            console.log(error)
+          })
       }
       else {
         api.addLike(id)
           .then(res => {
             card.setLikes(res.likes)
+          })
+          .catch(error => {
+            console.log(error)
           })
       }
     });
@@ -158,42 +170,46 @@ const cardsList = new Section({
 },
   cardListSection
 )
-api.getInitialCards()
-  .then(cardData => {
+
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([profileData, cardData]) => {
+    userInfo.setUserInfo(profileData)
+    userId = profileData._id
+
     cardData.forEach(data => {
       createAndAddCard(data);
-
-      cardsList.renderItems();
+      cardsList.renderItems(data);
     })
   })
+  .catch(error => {
+    console.log(error)
+  })
+
 
 // photoModal
 const popupWithImage = new PopupWithImage(photoModal);
 popupWithImage.setEventListeners();
 
 openEditModalButton.addEventListener('click', () => {
-  formElementEdit.reset();
   editPopup.open();
   if (editFormValidator) {
-    editFormValidator.resetInputs();
+    //editFormValidator.resetInputs();
     editFormValidator.resetValidation();
   }
 });
 
 openCardModalButton.addEventListener('click', () => {
-  formElementAddCard.reset();
   cardPopup.open();
   if (addCardFormValidator) {
-    addCardFormValidator.resetInputs();
+    //addCardFormValidator.resetInputs();
     addCardFormValidator.resetValidation();
   }
 });
 
 openProfilePhotoModalButton.addEventListener('click', () => {
-  formElementProfilePhotoModal.reset();
   profilePhotoPopup.open();
   if (profilePhotoPopupValidator) {
-    profilePhotoPopupValidator.resetInputs();
+    //profilePhotoPopupValidator.resetInputs();
     profilePhotoPopupValidator.resetValidation();
   }
 });
