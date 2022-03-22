@@ -68,6 +68,7 @@ const handleProfileFormSubmit = (data) => {
 const handleCardFormSubmit = (data) => {
   api.addCard(data.name, data.link, data.likes)
     .then(res => {
+
       createAndAddCard(res);
       cardPopup.close();
     })
@@ -102,7 +103,7 @@ profilePhotoPopup.setEventListeners();
 
 //CARDS
 function createCard(item) {
-  const card = new Card(
+  const card = new Card(userId,
     item,
     '.card-template',
     () => {
@@ -153,14 +154,8 @@ function renderCard(item) {
 };
 
 function createAndAddCard(cardData) {
-  const card = createCard({
-    name: cardData.name,
-    link: cardData.link,
-    likes: cardData.likes,
-    id: cardData._id,
-    userId: userId,
-    ownerId: cardData.owner._id
-  })
+
+  const card = createCard(cardData)
   cardsList.addItem(card);
 };
 
@@ -176,10 +171,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     userInfo.setUserInfo(profileData)
     userId = profileData._id
 
-    cardData.forEach(data => {
-      createAndAddCard(data);
-      cardsList.renderItems(data);
-    })
+    cardsList.renderItems(cardData);
   })
   .catch(error => {
     console.log(error)
@@ -192,6 +184,8 @@ popupWithImage.setEventListeners();
 
 openEditModalButton.addEventListener('click', () => {
   editPopup.open();
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileText.textContent;
   if (editFormValidator) {
     //editFormValidator.resetInputs();
     editFormValidator.resetValidation();
